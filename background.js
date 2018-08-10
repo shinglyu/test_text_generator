@@ -1,4 +1,5 @@
 let pendingSendResponse;
+let counter = 0;
 
 // Top level menu item
 chrome.contextMenus.create({
@@ -23,6 +24,20 @@ chrome.contextMenus.create({
     parentId: "insert-test-text"
 });
 
+chrome.contextMenus.create({
+    id: "insert-counter",
+    title: "test <counter>",
+    contexts: ["editable"],
+    parentId: "insert-test-text"
+});
+
+chrome.contextMenus.create({
+    id: "reset-counter",
+    title: "test 0 (reset counter)",
+    contexts: ["editable"],
+    parentId: "insert-test-text"
+});
+
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
   switch (info.menuItemId) {
     case "insert-test-text":
@@ -36,6 +51,19 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
     case "insert-lorem-ipsum":
       if (typeof pendingSendResponse === 'function') {
         pendingSendResponse({"text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."});
+      }
+      break;
+    case "insert-counter":
+      if (typeof pendingSendResponse === 'function') {
+        pendingSendResponse({"text": "test " + counter.toString()});
+        counter += 1;
+      }
+      break;
+    case "reset-counter":
+      counter = 0;
+      if (typeof pendingSendResponse === 'function') {
+        pendingSendResponse({"text": "test " + counter.toString()});
+        counter += 1;
       }
       break;
   }
