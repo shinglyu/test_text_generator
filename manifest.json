@@ -1,27 +1,18 @@
 {
-  "name": "CHANGE THIS : Extension boilerplate",
+  "name": "Test Text Generator",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "This extension was created with the awesome extensionizr.com",
-  "homepage_url": "http://extensionizr.com",
+  "description": "Insert test texts like Lorem Ipsum into any text input",
   "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "512": "icons/icon512.png"
   },
-  "default_locale": "en",
   "background": {
     "scripts": [
       "background.js"
     ],
     "persistent": false
   },
-  "options_page": "src/options/index.html",
-  "browser_action": {
-    "default_icon": "icons/icon19.png",
-    "default_title": "browser action demo",
-    "default_popup": "src/browser_action/browser_action.html"
-  },
+  "options_page": "options/index.html",
   "permissions": [
     "contextMenus"
   ],
